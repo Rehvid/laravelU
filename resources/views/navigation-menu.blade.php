@@ -20,6 +20,11 @@
                         {{ __('Loges') }}
                     </x-jet-nav-link>
                     @endcan('log-viewer')
+                    @can('users.index')
+                        <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                            {{ __('List Users') }}
+                        </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 
