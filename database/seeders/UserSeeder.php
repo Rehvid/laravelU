@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -17,11 +18,40 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'User Test',
-            'email' => 'user.test@localhost',
+        $admin = User::create([
+            'name' => 'Admin Test',
+            'email' => 'admin.test@localhost',
             'email_verified_at' => Carbon::now(),
             'password' => Hash::make('12345678'),
         ]);
+        $adminRole =  Role::findByName(config('auth.roles.admin'));
+        if (isset($adminRole)) {
+            $admin->assignRole($adminRole);
+        }
+
+        $manager = User::create([
+            'name' => 'Manager Test',
+            'email' => 'manager.test@localhost',
+            'email_verified_at' => Carbon::now(),
+            'password' => Hash::make('12345678'),
+        ]);
+
+        $managerRole =  Role::findByName(config('auth.roles.manager'));
+        if (isset($managerRole)) {
+            $manager->assignRole($managerRole);
+        }
+
+        $worker = User::create([
+            'name' => 'Worker Test',
+            'email' => 'worker.test@localhost',
+            'email_verified_at' => Carbon::now(),
+            'password' => Hash::make('12345678'),
+        ]);
+
+        $workerRole =  Role::findByName(config('auth.roles.worker'));
+        if (isset($workerRole)) {
+            $worker->assignRole($workerRole);
+        }
+
     }
 }
