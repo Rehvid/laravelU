@@ -15,6 +15,11 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    @can('log-viewer')
+                    <x-jet-nav-link href="{{ route('log-viewer::dashboard') }}" :active="request()->routeIs('log-viewer::dashboard')">
+                        {{ __('Loges') }}
+                    </x-jet-nav-link>
+                    @endcan('log-viewer')
                 </div>
             </div>
 
