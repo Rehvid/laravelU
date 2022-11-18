@@ -19,7 +19,7 @@ class AssignManagerRoleAction extends Action
     public function handle($model, View $view)
     {
         $model->assignRole(config('auth.roles.manager'));
-        $this->success('Udało się');
+        $this->success('Udało się przypisać role Manager');
     }
 
     public function renderIf($model, View $view): bool

@@ -19,7 +19,7 @@ class RemoveAdminRoleAction extends Action
     public function handle($model, View $view)
     {
         $model->removeRole(config('auth.roles.admin'));
-        $this->success('Udało się usunąć');
+        $this->success('Udało się usunąć role Admina');
     }
 
     public function renderIf($model, View $view): bool
