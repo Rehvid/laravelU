@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Actions;
+namespace App\Http\Livewire\Users\Actions;
 
 use Illuminate\Support\Facades\Auth;
 use LaravelViews\Actions\Action;

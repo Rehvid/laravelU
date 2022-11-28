@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Users;
 
-use App\Http\Livewire\Actions\AssignAdminRoleAction;
-use App\Http\Livewire\Actions\AssignManagerRoleAction;
-use App\Http\Livewire\Actions\RemoveAdminRoleAction;
-use App\Http\Livewire\Actions\RemoveManagerRoleAction;
 use App\Http\Livewire\Current;
+use App\Http\Livewire\Users\Actions\AssignAdminRoleAction;
+use App\Http\Livewire\Users\Actions\AssignManagerRoleAction;
+use App\Http\Livewire\Users\Actions\RemoveAdminRoleAction;
+use App\Http\Livewire\Users\Actions\RemoveManagerRoleAction;
 use App\Http\Livewire\Users\Filters\EmailVerifiedFilter;
 use App\Http\Livewire\Users\Filters\UsersRoleFilter;
 use App\Models\User;
