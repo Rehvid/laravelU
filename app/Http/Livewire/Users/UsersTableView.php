@@ -12,9 +12,12 @@ use App\Http\Livewire\Users\Filters\UsersRoleFilter;
 use App\Models\User;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
+use WireUi\Traits\Actions;
 
 class UsersTableView extends TableView
 {
+
+    use Actions;
 
     public $searchBy = [
         'name',

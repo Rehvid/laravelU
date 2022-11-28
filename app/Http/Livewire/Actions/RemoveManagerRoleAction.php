@@ -19,7 +19,7 @@ class RemoveManagerRoleAction extends Action
     public function handle($model, View $view)
     {
         $model->removeRole(config('auth.roles.manager'));
-        $this->success('Udało się usunać role Managera');
+        $view->notification()->success('Zaktualizowano', 'Odebrano  rolę managera dla ' . $model->name);
     }
 
     public function renderIf($model, View $view): bool
