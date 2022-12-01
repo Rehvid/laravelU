@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +36,10 @@ Route::middleware([
             ->name('index')
             ->middleware(['permission:users.index']);
     });
+
+
+        Route::resource('status', StatusController::class)->only([
+            'index', 'create', 'edit'
+        ]);
 
 });
