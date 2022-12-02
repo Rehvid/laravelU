@@ -19,7 +19,7 @@ class SoftDeleteStatusAction extends Action
     {
         $view->dialog()->confirm([
             'title' => 'Usuwanie kategorii',
-            'description' => 'Czy na pewno usunąć ' . $model->name,
+            'description' => 'Czy na pewno usunąć kategorię: ' . $model->name,
             'icon' => 'question',
             'iconColor' => 'text-red-500',
             'accept' => [
@@ -28,7 +28,7 @@ class SoftDeleteStatusAction extends Action
                 'params' => $model->id
             ],
             'reject' => [
-                'label' => 'no'
+                'label' => 'Nie'
             ]
         ]);
     }
