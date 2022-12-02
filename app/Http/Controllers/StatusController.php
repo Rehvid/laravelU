@@ -9,6 +9,7 @@ class StatusController extends Controller
 {
     public function index()
     {
+        $this->authorize('viewAny', Status::class);
         return view(
             'status.index',
             [
@@ -19,11 +20,13 @@ class StatusController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Status::class);
         return view('status.form');
     }
 
     public function edit(Status $status)
     {
+        $this->authorize('update', $status);
         return view('status.form', ['status' => $status]);
     }
 }

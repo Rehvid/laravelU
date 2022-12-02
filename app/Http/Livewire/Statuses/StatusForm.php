@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Statuses;
 
 use App\Models\Status;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
@@ -11,6 +12,7 @@ use WireUi\Traits\Actions;
 class StatusForm extends Component
 {
     use Actions;
+    use AuthorizesRequests;
 
     public Status $status;
     public Bool $editMode;
@@ -57,6 +59,12 @@ class StatusForm extends Component
 
     public function save()
     {
+        if ($this->editMode) {
+            $this->authorize('update', $this->status);
+        } else {
+            $this->authorize('create', Status::class);
+        }
+
         $this->validate();
         $this->status->save();
         $this->notification()->success(
