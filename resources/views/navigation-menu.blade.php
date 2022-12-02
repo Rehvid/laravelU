@@ -25,11 +25,11 @@
                             {{ __('List Users') }}
                         </x-jet-nav-link>
                     @endcan
-{{--                    @can('status.index')--}}
+                    @can('statuses.index')
                         <x-jet-nav-link href="{{ route('status.index') }}" :active="request()->routeIs('status.index')">
                             {{ __('List Statuses') }}
                         </x-jet-nav-link>
-{{--                    @endcan--}}
+                    @endcan
                 </div>
             </div>
 
