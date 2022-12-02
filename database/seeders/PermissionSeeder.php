@@ -29,6 +29,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'statuses.store']);
         Permission::create(['name' => 'statuses.update']);
         Permission::create(['name' => 'statuses.destroy']);
+        Permission::create(['name' => 'statuses.restore']);
 
         $adminRole = Role::findByName(config('auth.roles.admin'));
         $adminRole->givePermissionTo('users.index');
@@ -42,10 +43,13 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('statuses.store');
         $adminRole->givePermissionTo('statuses.update');
         $adminRole->givePermissionTo('statuses.destroy');
+        $adminRole->givePermissionTo('statuses.restore');
 
         $managerRole = Role::findByName(config('auth.roles.manager'));
+        $managerRole->givePermissionTo('users.assign_to_team');
         $managerRole->givePermissionTo('statuses.index');
 
         $workerRole = Role::findByName(config('auth.roles.worker'));
+        $workerRole->givePermissionTo('statuses.index');
     }
 }
