@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\StatusController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\StatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,8 +40,16 @@ Route::middleware([
     });
 
 
-        Route::resource('status', StatusController::class)->only([
+    Route::resource('status', StatusController::class)->only([
             'index', 'create', 'edit'
-        ]);
+    ]);
+
+    Route::resource('task', TaskController::class)->only([
+        'index', 'create', 'edit'
+    ]);
+
+    Route::resource('team', TeamController::class)->only([
+        'index', 'create', 'edit'
+    ]);
 
 });
