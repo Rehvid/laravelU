@@ -25,11 +25,12 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(StatusSeeder::class);
         $this->call(TeamSeeder::class);
-        $this->call(TaskSeeder::class);
 
-        User::factory(10)->create();
-        Status::factory(10)->create();
-        Team::factory(10)->create();
-        Task::factory(10)->create();
+        User::factory(50)->create();
+        Status::factory(50)->create();
+        Team::factory(50)->create();
+
+        $this->call(TaskSeeder::class);
+        Task::factory(50)->create();
     }
 }
