@@ -27,7 +27,7 @@ class TasksTableView extends TableView
      * Sets a model class to get the initial data
      */
     protected $model = Task::class;
-    protected $paginate = 10;
+    protected $paginate = 25;
 
     /**
      * Sets the headers of the table as you want to be displayed
@@ -51,9 +51,9 @@ class TasksTableView extends TableView
     {
 
         return [
-            Header::title('user')->sortBy('user'),
-            Header::title('team')->sortBy('team'),
-            Header::title('status')->sortBy('status'),
+            Header::title('user'),
+            Header::title('team'),
+            Header::title('status'),
             Header::title('title')->sortBy('title'),
             Header::title('description')->sortBy('description'),
             Header::title('deadline')->sortBy('deadline'),

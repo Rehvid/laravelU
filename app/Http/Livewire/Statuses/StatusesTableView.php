@@ -27,7 +27,7 @@ class StatusesTableView extends TableView
     /**
      * Sets a model class to get the initial data
      */
-    protected $paginate = 5;
+    protected $paginate = 25;
     protected $model = Status::class;
 
     /**

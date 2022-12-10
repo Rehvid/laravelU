@@ -21,6 +21,7 @@ class UsersTableView extends TableView
 
     public $searchBy = [
         'name',
+        'team.name',
         'email',
         'roles.name',
         'created_at',
@@ -30,7 +31,7 @@ class UsersTableView extends TableView
      */
     protected $model = User::class;
 
-    protected $paginate = 5;
+    protected $paginate = 25;
 
     /**
      * Sets the headers of the table as you want to be displayed
@@ -41,8 +42,9 @@ class UsersTableView extends TableView
     {
         return [
             Header::title('name')->sortBy('name'),
+            Header::title('team_name'),
             Header::title('email')->sortBy('email'),
-            'roles',
+            Header::title('roles'),
             Header::title('created_at')->sortBy('created_at'),
         ];
     }
@@ -56,6 +58,7 @@ class UsersTableView extends TableView
     {
         return [
             $model->name,
+            $model->team->name,
             $model->email,
             $model->roles->implode('name', ','),
             $model->created_at,
