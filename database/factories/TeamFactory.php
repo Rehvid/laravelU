@@ -17,13 +17,9 @@ class TeamFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'user_id' => rand(1, 13),
+            'name' => $this->faker->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'deleted_at' => rand(0, 5) === 0
-                ? $this->faker->dateTimeBetween("- 1 week", "+ 2 weeks")
-                : null,
         ];
     }
 }

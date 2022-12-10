@@ -20,7 +20,7 @@ class StatusFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'deleted_at' => rand(0, 5) === 0
