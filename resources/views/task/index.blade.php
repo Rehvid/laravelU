@@ -8,11 +8,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <div id="table-view-wrapper" class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                {{-- @can('tasks.store') --}}
+                @can('tasks.store')
                     <div class="flex justify-end m-4">
-                        <x-button primary label="Dodaj Zadanie" href="{{ route('status.create') }}"></x-button>
+                        <x-button primary label="Dodaj Zadanie" href="{{ route('task.create') }}"></x-button>
                     </div>
-                {{-- @endcan --}}
+                @endcan
                 <livewire:tasks.tasks-table-view />
             </div>
         </div>

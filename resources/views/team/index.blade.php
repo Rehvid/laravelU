@@ -10,7 +10,7 @@
             <div id="table-view-wrapper" class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 @can('teams.store')
                     <div class="flex justify-end m-4">
-                        <x-button primary label="Dodaj Zespół" href="{{ route('status.create') }}"></x-button>
+                        <x-button primary label="Dodaj Zespół" href="{{ route('team.create') }}"></x-button>
                     </div>
                 @endcan
                 <livewire:teams.teams-table-view />

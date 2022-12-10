@@ -24,27 +24,27 @@
 
                     @can('users.index')
                         <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
-                            {{ __('List Users') }}
+                            {{ __('Users') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('statuses.index')
                         <x-jet-nav-link href="{{ route('status.index') }}" :active="request()->routeIs('status.index')">
-                            {{ __('List Statuses') }}
+                            {{ __('Statuses') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('teams.index')
                         <x-jet-nav-link href="{{ route('team.index') }}" :active="request()->routeIs('team.index')">
-                            {{ __('List Teams') }}
+                            {{ __('Teams') }}
                         </x-jet-nav-link>
                     @endcan
 
-                    {{-- @can('tasks.index') --}}
+                    @can('tasks.index')
                         <x-jet-nav-link href="{{ route('task.index') }}" :active="request()->routeIs('task.index')">
-                            {{ __('List Tasks') }}
+                            {{ __('Tasks') }}
                         </x-jet-nav-link>
-                    {{-- @endcan --}}
+                    @endcan
 
                 </div>
             </div>
