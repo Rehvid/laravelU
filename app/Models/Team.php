@@ -13,11 +13,7 @@ class Team extends Model
     use HasRoles;
     use SoftDeletes;
 
-    protected $fillable = ['name', 'user_id'];
+    protected $fillable = ['name'];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
 

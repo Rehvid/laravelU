@@ -27,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name',
+        'team_id',
         'email',
         'password',
     ];
@@ -64,6 +65,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isAdmin(): bool
     {
         return $this->hasRole(config('auth.roles.admin'));
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
     }
 
 }
