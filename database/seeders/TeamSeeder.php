@@ -18,42 +18,36 @@ class TeamSeeder extends Seeder
     {
         Team::create([
             'name' => 'Frontend Developerzy',
-            'user_id' => rand(1, 13),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         Team::create([
             'name' => 'Backend Developerzy',
-            'user_id' => rand(1, 13),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         Team::create([
             'name' => 'Graficy',
-            'user_id' => rand(1, 13),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         Team::create([
             'name' => 'SEO',
-            'user_id' => rand(1, 13),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         Team::create([
             'name' => 'UX/UI Designerzy',
-            'user_id' => rand(1, 13),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
         Team::create([
             'name' => 'Dział sprzedaży',
-            'user_id' => rand(1, 13),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
