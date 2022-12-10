@@ -10,11 +10,11 @@ class TeamController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Team::class);
-        
+
         return view(
             'team.index',
             [
-                'teams' => Team::with('user')->withTrashed()->get(),
+                'teams' => Team::withTrashed()->get(),
             ]
         );
     }
