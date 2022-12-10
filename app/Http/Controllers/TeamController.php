@@ -9,23 +9,14 @@ class TeamController extends Controller
 {
     public function index()
     {
+        $this->authorize('viewAny', Team::class);
+        
         return view(
             'team.index',
             [
-                'teams' => Team::withTrashed()->get(),
+                'teams' => Team::with('user')->withTrashed()->get(),
             ]
         );
     }
 
-    public function create()
-    {
-        // $this->authorize('create', Status::class);
-        // return view('status.form');
-    }
-
-    public function edit(Team $team)
-    {
-        // $this->authorize('update', $status);
-        // return view('status.form', ['status' => $status]);
-    }
 }
