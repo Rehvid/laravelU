@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
-
 declare(strict_types=1);
+
+namespace App\Http\Controllers;
 
 use App\Models\Status;
 use Illuminate\Contracts\View\View;
@@ -28,7 +28,7 @@ class StatusController extends Controller
     public function edit(Status $status): View
     {
         $this->authorize('update', $status);
-        
+
         return view('status.form', ['status' => $status]);
     }
 }
