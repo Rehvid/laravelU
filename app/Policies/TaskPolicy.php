@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Status;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TaskPolicy
@@ -69,5 +70,13 @@ class TaskPolicy
     {
         return $task->deleted_at !== null
             && $user->can('tasks.restore');
+    }
+
+    public function done(User $user, Task $task)
+    {
+        $statusDone = Status::where('name', '=', 'Wykonane')->value('id');
+
+        return $task->status_id !== $statusDone
+            && $user->can('tasks.done');
     }
 }

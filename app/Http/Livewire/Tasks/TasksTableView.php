@@ -5,17 +5,19 @@ declare(strict_types=1);
 namespace App\Http\Livewire\Tasks;
 
 
-use App\Http\Livewire\Tasks\Filters\TasksTeamFilter;
-use App\Http\Livewire\Tasks\Filters\TasksStatusFilter;
 use App\Models\Task;
+use App\Models\Status;
+use WireUi\Traits\Actions;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
-use Illuminate\Contracts\Database\Eloquent\Builder;
+use App\Http\Livewire\Tasks\Actions\DoneTaskAction;
 use App\Http\Livewire\Tasks\Actions\EditTaskAction;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use App\Http\Livewire\Tasks\Filters\TasksTeamFilter;
 use App\Http\Livewire\Tasks\Actions\RestoreTaskAction;
+use App\Http\Livewire\Tasks\Filters\TasksStatusFilter;
 use App\Http\Livewire\Tasks\Actions\SoftDeleteTaskAction;
 use App\Http\Livewire\Tasks\Filters\SoftTaskDeleteFilter;
-use WireUi\Traits\Actions;
 
 
 
@@ -109,6 +111,21 @@ class TasksTableView extends TableView
         }
     }
 
+    public function doneTask($id): void
+    {
+        $task = Task::find($id);
+
+        if ($task) {
+            $statusId = Status::where('name', '=' , 'Wykonane')->value('id');
+
+            $task->status_id = $statusId;
+
+            $task->save();
+
+            $this->notification()->success('Zadanie zostało ukończone ' . $task->name);
+        }
+    }
+
     protected function filters(): array
     {
         return [
@@ -121,6 +138,7 @@ class TasksTableView extends TableView
     protected function actionsByRow(): array
     {
         return [
+            new DoneTaskAction(),
             new EditTaskAction('task.edit', 'Edytuj'),
             new RestoreTaskAction(),
             new SoftDeleteTaskAction(),
