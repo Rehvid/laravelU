@@ -69,7 +69,7 @@ class TeamPolicy
     public function restore(User $user, Team $team)
     {
         return $team->deleted_at !== null
-            && $user->can('temas.restore');
+            && $user->can('teams.restore');
     }
 
 }
