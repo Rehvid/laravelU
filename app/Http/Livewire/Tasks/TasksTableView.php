@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Livewire\Tasks;
 
 
+use App\Http\Livewire\Tasks\Filters\TasksTeamFilter;
+use App\Http\Livewire\Tasks\Filters\TasksStatusFilter;
 use App\Models\Task;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
@@ -110,7 +112,9 @@ class TasksTableView extends TableView
     protected function filters(): array
     {
         return [
-            new SoftTaskDeleteFilter()
+            new SoftTaskDeleteFilter(),
+            new TasksStatusFilter(),
+            new TasksTeamFilter()
         ];
     }
 
