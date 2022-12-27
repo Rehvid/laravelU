@@ -27,4 +27,13 @@ class TeamController extends Controller
         return view('team.form');
     }
 
+    public function edit(Team $team): View
+    {
+        $this->authorize('update', $team);
+
+        return view('team.form', [
+            'team' => $team
+        ]);
+    }
+
 }
