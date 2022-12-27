@@ -18,31 +18,31 @@
 
                     @can('log-viewer')
                         <x-jet-nav-link href="{{ route('log-viewer::dashboard') }}" :active="request()->routeIs('log-viewer::dashboard')">
-                            {{ __('Loges') }}
+                            {{ __('Logi') }}
                         </x-jet-nav-link>
                     @endcan('log-viewer')
 
                     @can('users.index')
                         <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
-                            {{ __('Users') }}
+                            {{ __('Użytkownicy') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('statuses.index')
                         <x-jet-nav-link href="{{ route('status.index') }}" :active="request()->routeIs('status.index')">
-                            {{ __('Statuses') }}
+                            {{ __('Statusy') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('teams.index')
                         <x-jet-nav-link href="{{ route('team.index') }}" :active="request()->routeIs('team.index')">
-                            {{ __('Teams') }}
+                            {{ __('Zespoły') }}
                         </x-jet-nav-link>
                     @endcan
 
                     @can('tasks.index')
                         <x-jet-nav-link href="{{ route('task.index') }}" :active="request()->routeIs('task.index')">
-                            {{ __('Tasks') }}
+                            {{ __('Zadania') }}
                         </x-jet-nav-link>
                     @endcan
 
