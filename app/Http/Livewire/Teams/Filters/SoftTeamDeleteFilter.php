@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Teams\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -12,6 +14,7 @@ class SoftTeamDeleteFilter extends Filter
     public function __construct()
     {
         parent::__construct();
+        
         $this->title = 'Usunięto';
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Users\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -21,14 +23,15 @@ class EmailVerifiedFilter extends Filter
         if ($value == 1) {
             return $query->whereNotNull('email_verified_at');
         }
+
         return $query->whereNull('email_verified_at');
     }
 
     public function options(): array
     {
        return [
-           'yes' => 1,
-           'no' => 0,
+           'Tak' => 1,
+           'Nie' => 0,
        ];
     }
 

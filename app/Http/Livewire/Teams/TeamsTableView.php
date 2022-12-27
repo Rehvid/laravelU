@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Teams;
 
 use App\Models\Team;
@@ -17,19 +19,20 @@ class TeamsTableView extends TableView
 
     use Actions;
 
-    /**
-     * Sets a model class to get the initial data
-     */
-    protected $model = Team::class;
-
-    protected $paginate = 25;
-
     public $searchBy = [
         'name',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
+    /**
+     * Sets a model class to get the initial data
+     */
+    protected $model = Team::class;
+
+    protected $paginate = 5;
+
 
     /**
      * Sets the headers of the table as you want to be displayed
@@ -66,23 +69,8 @@ class TeamsTableView extends TableView
         ];
     }
 
-    protected function filters()
-    {
-        return [
-            new SoftTeamDeleteFilter()
-        ];
-    }
 
-    protected function actionsByRow()
-    {
-        return [
-            new EditTeamAction('team.edit', 'Edit'),
-            new SoftDeleteTeamAction(),
-            new RestoreTeamAction()
-        ];
-    }
-
-    public function softDelete($id)
+    public function softDelete($id): void
     {
 
         $team = Team::find($id);
@@ -94,7 +82,7 @@ class TeamsTableView extends TableView
 
     }
 
-    public function restore($id)
+    public function restore($id): void
     {
         $team = Team::withTrashed()->find($id);
 
@@ -103,6 +91,22 @@ class TeamsTableView extends TableView
             $this->notification()->success('Przywrócono Team ' . $team->name);
         }
 
+    }
+
+    protected function filters(): array
+    {
+        return [
+            new SoftTeamDeleteFilter()
+        ];
+    }
+
+    protected function actionsByRow(): array
+    {
+        return [
+            new EditTeamAction('team.edit', 'Edit'),
+            new SoftDeleteTeamAction(),
+            new RestoreTeamAction()
+        ];
     }
 
 }

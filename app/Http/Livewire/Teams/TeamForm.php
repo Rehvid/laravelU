@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Teams;
 
 use App\Models\Team;
+
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Validation\ValidationException;
 use Livewire\Component;
-use Illuminate\Support\Facades\Validator;
 use WireUi\Traits\Actions;
 
 class TeamForm extends Component
@@ -39,13 +41,13 @@ class TeamForm extends Component
         ];
     }
 
-    public function mount(Team $team, Bool $editMode)
+    public function mount(Team $team, Bool $editMode): void
     {
         $this->team = $team;
         $this->editMode = $editMode;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.teams.team_form');
     }
@@ -53,12 +55,12 @@ class TeamForm extends Component
     /**
      * @throws ValidationException
      */
-    public function updated($propertyName)
+    public function updated($propertyName): void
     {
         $this->validateOnly($propertyName);
     }
 
-    public function save()
+    public function save(): void
     {
         if ($this->editMode) {
             $this->authorize('update', $this->team);
@@ -72,11 +74,11 @@ class TeamForm extends Component
 
         $this->notification()->success(
              $this->editMode
-                ? "Zaktualizowano team"
-                : "Dodano team",
+                ? "Zaktualizowano zespół"
+                : "Dodano zespół",
             $this->editMode
-                ? "Udało się zaktualizować  team"
-                : "Udało się stworzyć nowy team"
+                ? "Udało się zaktualizować zespół"
+                : "Udało się stworzyć nowy zespół"
         );
 
         $this->editMode = true;

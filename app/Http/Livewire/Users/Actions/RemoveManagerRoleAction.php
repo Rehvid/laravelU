@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Users\Actions;
 
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +18,7 @@ class RemoveManagerRoleAction extends Action
         parent::__construct();
     }
 
-    public function handle($model, View $view)
+    public function handle($model, View $view): void
     {
         $model->removeRole(config('auth.roles.manager'));
         $view->notification()->success('Zaktualizowano', 'Odebrano  rolę managera dla ' . $model->name);

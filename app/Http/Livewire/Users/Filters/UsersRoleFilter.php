@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Users\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -13,6 +15,7 @@ class UsersRoleFilter extends Filter
     public function __construct()
     {
         parent::__construct();
+
         $this->title = 'roles';
     }
 
@@ -26,8 +29,10 @@ class UsersRoleFilter extends Filter
     public function options(): array
     {
         $roles = Role::all();
+
         $labels = $roles->pluck('name');
         $values = $roles->pluck('id');
+
         return $labels->combine($values)->toArray();
     }
 }

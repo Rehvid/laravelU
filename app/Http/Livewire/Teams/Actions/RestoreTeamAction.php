@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Teams\Actions;
 
 use LaravelViews\Views\View;
@@ -13,14 +15,15 @@ class RestoreTeamAction extends Action
     public function __construct()
     {
         parent::__construct();
+
         $this->title = 'Przywróć Team';
     }
 
-    public function handle($model, View $view)
+    public function handle($model, View $view): void
     {
         $view->dialog()->confirm([
-            'title' => 'Przywracanie Teamu',
-            'description' => 'Czy na pewno przywrócić Team ' . $model->name,
+            'title' => 'Przywracanie zespołu',
+            'description' => 'Czy na pewno przywrócić zespół: ' . $model->name . ' ?',
             'icon' => 'question',
             'iconColor' => 'text-green-500',
             'accept' => [
@@ -34,7 +37,7 @@ class RestoreTeamAction extends Action
         ]);
     }
 
-    public function  renderIf($model, View $view)
+    public function  renderIf($model, View $view): mixed
     {
         return request()->user()->can('restore', $model);
     }

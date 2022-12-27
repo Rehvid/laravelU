@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Teams\Actions;
 
 use LaravelViews\Actions\RedirectAction;
@@ -12,7 +14,7 @@ class EditTeamAction extends RedirectAction
         parent::__construct($to, $title, $icon);
     }
 
-    public function renderIf($model, View $view)
+    public function renderIf($model, View $view): mixed
     {
         return request()->user()->can('update', $model);
     }

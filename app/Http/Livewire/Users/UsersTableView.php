@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Users;
 
 use App\Http\Livewire\Current;
@@ -31,7 +33,7 @@ class UsersTableView extends TableView
      */
     protected $model = User::class;
 
-    protected $paginate = 25;
+    protected $paginate = 5;
 
     /**
      * Sets the headers of the table as you want to be displayed
@@ -65,7 +67,7 @@ class UsersTableView extends TableView
         ];
     }
 
-    protected function filters()
+    protected function filters(): array
     {
         return [
             new UsersRoleFilter,
@@ -73,7 +75,7 @@ class UsersTableView extends TableView
         ];
     }
 
-    protected function actionsByRow()
+    protected function actionsByRow(): array
     {
         return [
             new AssignAdminRoleAction,

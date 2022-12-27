@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Teams\Actions;
 
 use LaravelViews\Actions\Action;
@@ -15,11 +17,11 @@ class SoftDeleteTeamAction extends Action
         $this->title = 'Usuń';
     }
 
-    public function handle($model, View $view)
+    public function handle($model, View $view): void
     {
         $view->dialog()->confirm([
-            'title' => 'Usuwanie kategorii',
-            'description' => 'Czy na pewno usunąć kategorię: ' . $model->name,
+            'title' => 'Usuwanie zespołu',
+            'description' => 'Czy na pewno usunąć zespół: ' . $model->name . ' ?',
             'icon' => 'question',
             'iconColor' => 'text-red-500',
             'accept' => [
@@ -33,7 +35,7 @@ class SoftDeleteTeamAction extends Action
         ]);
     }
 
-    public function  renderIf($model, View $view)
+    public function  renderIf($model, View $view): mixed
     {
         return request()->user()->can('delete', $model);
     }
