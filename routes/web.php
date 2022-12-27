@@ -40,16 +40,16 @@ Route::middleware([
     });
 
 
-    Route::resource('status', StatusController::class)->only([
-            'index', 'create', 'edit'
+    Route::resource('status', StatusController::class, [
+        'only' => ['index', 'create', 'edit']
     ]);
 
-    Route::resource('task', TaskController::class)->only([
-        'index', 'create', 'edit'
+    Route::resource('task', TaskController::class, [
+        'only' => ['index', 'create', 'edit']
     ]);
 
-    Route::resource('team', TeamController::class)->only([
-        'index', 'create', 'edit'
+    Route::resource('team', TeamController::class, [
+        'only' => ['index', 'create', 'edit']
     ]);
 
 });
