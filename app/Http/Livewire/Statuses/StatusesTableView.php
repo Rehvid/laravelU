@@ -1,6 +1,8 @@
 <?php
 
+declare(strict_types=1);
 namespace App\Http\Livewire\Statuses;
+
 
 use App\Http\Livewire\Statuses\Actions\EditStatusAction;
 use App\Http\Livewire\Statuses\Actions\RestoreStatusAction;
@@ -27,7 +29,7 @@ class StatusesTableView extends TableView
     /**
      * Sets a model class to get the initial data
      */
-    protected $paginate = 25;
+    protected $paginate = 5;
     protected $model = Status::class;
 
     /**
@@ -65,33 +67,40 @@ class StatusesTableView extends TableView
         ];
     }
 
-    protected function filters()
+
+    public function softDelete($id): void
+    {
+        $status = Status::find($id);
+
+        if ($status) {
+            $status->delete();
+            $this->notification()->success('Usunięto', 'Usunięto status ' . $status->name);
+        }
+    }
+
+    public function restore($id): void
+    {
+        $status = Status::withTrashed()->find($id);
+
+        if ($status) {
+            $status->restore();
+            $this->notification()->success('Przywrócono status ' . $status->name);
+        }
+    }
+
+    protected function filters(): array
     {
         return [
             new SoftDeleteFilter()
         ];
     }
 
-    protected function actionsByRow()
+    protected function actionsByRow(): array
     {
         return [
             new EditStatusAction('status.edit', 'Edit'),
             new SoftDeleteStatusAction(),
             new RestoreStatusAction()
         ];
-    }
-
-    public function softDelete($id)
-    {
-        $status = Status::find($id);
-        $status->delete();
-        $this->notification()->success('Usunięto', 'Usunięto status ' . $status->name);
-    }
-
-    public function restore($id)
-    {
-        $status = Status::withTrashed()->find($id);
-        $status->restore();
-        $this->notification()->success('Przywrócono status ' . $status->name);
     }
 }

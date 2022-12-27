@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Statuses;
 
 use App\Models\Status;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Validation\ValidationException;
 use Livewire\Component;
-use Illuminate\Support\Facades\Validator;
 use WireUi\Traits\Actions;
 
 class StatusForm extends Component
@@ -34,17 +35,17 @@ class StatusForm extends Component
     public function validationAttributes(): array
     {
         return [
-            'name' => 'nazwa'
+            'name' => 'Nazwa'
         ];
     }
 
-    public function mount(Status $status, Bool $editMode)
+    public function mount(Status $status, Bool $editMode): void
     {
         $this->status = $status;
         $this->editMode = $editMode;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.statuses.status-form');
     }
@@ -52,12 +53,12 @@ class StatusForm extends Component
     /**
      * @throws ValidationException
      */
-    public function updated($propertyName)
+    public function updated($propertyName): void
     {
         $this->validateOnly($propertyName);
     }
 
-    public function save()
+    public function save(): void
     {
         if ($this->editMode) {
             $this->authorize('update', $this->status);
@@ -66,7 +67,9 @@ class StatusForm extends Component
         }
 
         $this->validate();
+
         $this->status->save();
+
         $this->notification()->success(
              $this->editMode
                 ? "Zaktualizowano status"
@@ -75,6 +78,7 @@ class StatusForm extends Component
                 ? "Udało się zaktualizować  status"
                 : "Udało się stworzyć nowy status"
         );
+        
         $this->editMode = true;
     }
 

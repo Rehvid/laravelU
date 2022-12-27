@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Statuses\Actions;
 
 use LaravelViews\Views\View;
@@ -12,14 +14,15 @@ class RestoreStatusAction extends \LaravelViews\Actions\Action
     public function __construct()
     {
         parent::__construct();
+
         $this->title = 'Przywróć status';
     }
 
-    public function handle($model, View $view)
+    public function handle($model, View $view): void
     {
         $view->dialog()->confirm([
             'title' => 'Przywracanie statusu',
-            'description' => 'Czy na pewno przywrócić status ' . $model->name,
+            'description' => 'Czy na pewno przywrócić status: ' . $model->name . ' ?',
             'icon' => 'question',
             'iconColor' => 'text-green-500',
             'accept' => [
@@ -33,7 +36,7 @@ class RestoreStatusAction extends \LaravelViews\Actions\Action
         ]);
     }
 
-    public function  renderIf($model, View $view)
+    public function  renderIf($model, View $view): mixed
     {
         return request()->user()->can('restore', $model);
     }

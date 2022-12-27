@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Statuses\Filters;
 
 use Illuminate\Database\Eloquent\Builder;

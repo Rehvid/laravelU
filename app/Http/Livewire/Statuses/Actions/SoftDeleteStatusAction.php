@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Statuses\Actions;
 
 use LaravelViews\Actions\Action;
@@ -12,14 +14,15 @@ class SoftDeleteStatusAction extends Action
     public function __construct()
     {
         parent::__construct();
+
         $this->title = 'Usuń';
     }
 
-    public function handle($model, View $view)
+    public function handle($model, View $view): void
     {
         $view->dialog()->confirm([
             'title' => 'Usuwanie kategorii',
-            'description' => 'Czy na pewno usunąć kategorię: ' . $model->name,
+            'description' => 'Czy na pewno usunąć kategorię: ' . $model->name . ' ?',
             'icon' => 'question',
             'iconColor' => 'text-red-500',
             'accept' => [
@@ -33,7 +36,7 @@ class SoftDeleteStatusAction extends Action
         ]);
     }
 
-    public function  renderIf($model, View $view)
+    public function  renderIf($model, View $view): mixed
     {
         return request()->user()->can('delete', $model);
     }
