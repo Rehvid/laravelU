@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="w-full mx-auto sm:px-6 lg:px-8">
 
             <div id="table-view-wrapper" class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 @can('tasks.store')
