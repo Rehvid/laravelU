@@ -11,6 +11,7 @@ use App\Http\Livewire\Users\Actions\RemoveAdminRoleAction;
 use App\Http\Livewire\Users\Actions\RemoveManagerRoleAction;
 use App\Http\Livewire\Users\Filters\EmailVerifiedFilter;
 use App\Http\Livewire\Users\Filters\UsersRoleFilter;
+use App\Http\Livewire\Users\Filters\UsersTeamFilter;
 use App\Models\User;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
@@ -71,6 +72,7 @@ class UsersTableView extends TableView
     {
         return [
             new UsersRoleFilter,
+            new UsersTeamFilter,
             new EmailVerifiedFilter,
         ];
     }
