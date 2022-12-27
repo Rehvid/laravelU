@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Tasks;
 
 use App\Models\Task;
-use App\Models\Team;
 use App\Models\User;
 use App\Models\Status;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use WireUi\Traits\Actions;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TaskForm extends Component
@@ -51,33 +51,37 @@ class TaskForm extends Component
     public function validationAttributes(): array
     {
         return [
-            'title' => 'nazwa'
+            'title' => 'Tytuł zadania',
+            'description' => 'Opis zadania',
+            'user_id' => 'Uzytkownik',
+            'status_id' => 'Status',
+            'deadline' => 'Termin wykonania zadania'
         ];
     }
 
-    public function mount(Task $task, Bool $editMode)
+    public function mount(Task $task, Bool $editMode): void
     {
         $this->task = $task;
         $this->editMode = $editMode;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.tasks.task-form', [
-            'users' => $this->getUserOptions(),
-            'statuses' => $this->getStatusOptions()
+            'users' => $this->getUsers(),
+            'statuses' => $this->getOptions()
         ]);
     }
 
     /**
      * @throws ValidationException
      */
-    public function updated($propertyName)
+    public function updated($propertyName): void
     {
         $this->validateOnly($propertyName);
     }
 
-    public function save()
+    public function save(): void
     {
         if ($this->editMode) {
             $this->authorize('update', $this->task);
@@ -96,37 +100,37 @@ class TaskForm extends Component
                 ? "Zaktualizowano zadanie"
                 : "Dodano Zadanie",
             $this->editMode
-                ? "Udało się zaktualizować  zadanie"
-                : "Udało się stworzyć nowy zadanie"
+                ? "Udało się zaktualizować zadanie"
+                : "Udało się stworzyć nowe zadanie"
         );
 
         $this->editMode = true;
     }
 
-    private function getUserOptions(): array
+    private function getUsers(): array
     {
         $users = User::select('id', 'name')->get();
 
-        $users_options = [];
+        $usersOptions = [];
 
         foreach($users as ['id' => $id, 'name' => $name]) {
-            $users_options[$id] = $name;
+            $usersOptions[$id] = $name;
         }
 
-        return $users_options;
+        return $usersOptions;
     }
 
-    private function getStatusOptions(): array
+    private function getOptions(): array
     {
         $statuses = Status::select('id', 'name')->get();
 
-        $statuses_options = [];
+        $statusesOptions = [];
 
         foreach($statuses as ['id' => $id, 'name' => $name]) {
-            $statuses_options[$id] = $name;
+            $statusesOptions[$id] = $name;
         }
 
-        return $statuses_options;
+        return $statusesOptions;
     }
 
 }

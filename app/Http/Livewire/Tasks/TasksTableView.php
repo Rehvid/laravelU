@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Tasks;
 
 
@@ -7,12 +9,9 @@ use App\Models\Task;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-
-
 use App\Http\Livewire\Tasks\Actions\EditTaskAction;
 use App\Http\Livewire\Tasks\Actions\RestoreTaskAction;
 use App\Http\Livewire\Tasks\Actions\SoftDeleteTaskAction;
-
 use App\Http\Livewire\Tasks\Filters\SoftTaskDeleteFilter;
 use WireUi\Traits\Actions;
 
@@ -20,21 +19,7 @@ use WireUi\Traits\Actions;
 
 class TasksTableView extends TableView
 {
-
     use Actions;
-
-    /**
-     * Sets a model class to get the initial data
-     */
-    protected $model = Task::class;
-    protected $paginate = 25;
-
-    /**
-     * Sets the headers of the table as you want to be displayed
-     *
-     * @return array<string> Array of headers
-     */
-
 
     public $searchBy = [
         'user.name',
@@ -46,6 +31,19 @@ class TasksTableView extends TableView
         'updated_at',
         'deleted_at',
     ];
+
+    /**
+     * Sets a model class to get the initial data
+     */
+    protected $model = Task::class;
+    protected $paginate = 5;
+
+    /**
+     * Sets the headers of the table as you want to be displayed
+     *
+     * @return array<string> Array of headers
+     */
+
 
     public function headers(): array
     {
@@ -88,34 +86,41 @@ class TasksTableView extends TableView
         ];
     }
 
-    protected function filters()
+
+    public function softDelete($id): void
+    {
+        $task = Task::find($id);
+
+        if ($task) {
+            $task->delete();
+            $this->notification()->success('Usunięto', 'Usunięto zadanie ' . $task->title);
+        }
+    }
+
+    public function restore($id): void
+    {
+        $task = Task::withTrashed()->find($id);
+
+        if ($task) {
+            $task->restore();
+            $this->notification()->success('Przywrócono zadanie ' . $task->name);
+        }
+    }
+
+    protected function filters(): array
     {
         return [
             new SoftTaskDeleteFilter()
         ];
     }
 
-    protected function actionsByRow()
+    protected function actionsByRow(): array
     {
         return [
             new EditTaskAction('task.edit', 'Edytuj'),
             new RestoreTaskAction(),
             new SoftDeleteTaskAction(),
         ];
-    }
-
-    public function softDelete($id)
-    {
-        $task = Task::find($id);
-        $task->delete();
-        $this->notification()->success('Usunięto', 'Usunięto zadanie ' . $task->title);
-    }
-
-    public function restore($id)
-    {
-        $task = Task::withTrashed()->find($id);
-        $task->restore();
-        $this->notification()->success('Przywrócono zadanie ' . $task->name);
     }
 
 }
