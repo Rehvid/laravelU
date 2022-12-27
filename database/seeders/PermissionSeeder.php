@@ -43,6 +43,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'tasks.update']);
         Permission::create(['name' => 'tasks.destroy']);
         Permission::create(['name' => 'tasks.restore']);
+        Permission::create(['name' => 'tasks.done']);
+        Permission::create(['name' => 'tasks.change_status']);
 
         $adminRole = Role::findByName(config('auth.roles.admin'));
 
@@ -73,6 +75,8 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('tasks.update');
         $adminRole->givePermissionTo('tasks.destroy');
         $adminRole->givePermissionTo('tasks.restore');
+        $adminRole->givePermissionTo('tasks.done');
+        $adminRole->givePermissionTo('tasks.change_status');
 
         $managerRole = Role::findByName(config('auth.roles.manager'));
 
@@ -80,11 +84,15 @@ class PermissionSeeder extends Seeder
         $managerRole->givePermissionTo('teams.assign_to_team');
         $managerRole->givePermissionTo('teams.index');
         $managerRole->givePermissionTo('tasks.index');
+        $managerRole->givePermissionTo('tasks.done');
+        $managerRole->givePermissionTo('tasks.change_status');
 
         $workerRole = Role::findByName(config('auth.roles.worker'));
 
         $workerRole->givePermissionTo('statuses.index');
         $workerRole->givePermissionTo('teams.index');
         $workerRole->givePermissionTo('tasks.index');
+        $workerRole->givePermissionTo('tasks.done');
+        $workerRole->givePermissionTo('tasks.change_status');
     }
 }
