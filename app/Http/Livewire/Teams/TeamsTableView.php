@@ -5,11 +5,18 @@ namespace App\Http\Livewire\Teams;
 use App\Models\Team;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
+use App\Http\Livewire\Teams\Actions\EditTeamAction;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use App\Http\Livewire\Teams\Actions\RestoreTeamAction;
+use App\Http\Livewire\Teams\Actions\SoftDeleteTeamAction;
 use App\Http\Livewire\Teams\Filters\SoftTeamDeleteFilter;
+use WireUi\Traits\Actions;
 
 class TeamsTableView extends TableView
 {
+
+    use Actions;
+
     /**
      * Sets a model class to get the initial data
      */
@@ -65,4 +72,37 @@ class TeamsTableView extends TableView
             new SoftTeamDeleteFilter()
         ];
     }
+
+    protected function actionsByRow()
+    {
+        return [
+            new EditTeamAction('Team.edit', 'Edit'),
+            new SoftDeleteTeamAction(),
+            new RestoreTeamAction()
+        ];
+    }
+
+    public function softDelete($id)
+    {
+
+        $team = Team::find($id);
+
+        if ($team) {
+            $team->delete();
+            $this->notification()->success('Usunięto', 'Usunięto Team ' . $team->name);
+        }
+
+    }
+
+    public function restore($id)
+    {
+        $team = Team::withTrashed()->find($id);
+
+        if ($team) {
+            $team->restore();
+            $this->notification()->success('Przywrócono Team ' . $team->name);
+        }
+
+    }
+
 }
