@@ -76,7 +76,7 @@ class TeamsTableView extends TableView
     protected function actionsByRow()
     {
         return [
-            new EditTeamAction('Team.edit', 'Edit'),
+            new EditTeamAction('team.edit', 'Edit'),
             new SoftDeleteTeamAction(),
             new RestoreTeamAction()
         ];
