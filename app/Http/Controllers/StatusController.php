@@ -2,31 +2,33 @@
 
 namespace App\Http\Controllers;
 
+declare(strict_types=1);
+
 use App\Models\Status;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class StatusController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $this->authorize('viewAny', Status::class);
-        return view(
-            'status.index',
-            [
-                'statuses' => Status::withTrashed()->get(),
-            ]
-        );
+
+        return view('status.index',[
+            'statuses' => Status::withTrashed()->get()
+        ]);
     }
 
-    public function create()
+    public function create(): View
     {
         $this->authorize('create', Status::class);
+
         return view('status.form');
     }
 
-    public function edit(Status $status)
+    public function edit(Status $status): View
     {
         $this->authorize('update', $status);
+        
         return view('status.form', ['status' => $status]);
     }
 }

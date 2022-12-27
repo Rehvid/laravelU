@@ -1,20 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class UserController extends Controller
 {
-    //
-    public function index()
+
+    public function index(): View
     {
-        return view(
-            'users.index',
-            [
-                'users' => User::with('roles')->get()
-            ]
-        );
+        return view('users.index',[
+            'users' => User::with('roles')->get()
+        ]);
     }
 }
