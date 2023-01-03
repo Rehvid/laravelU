@@ -62,7 +62,7 @@ class TaskSeeder extends Seeder
         ]);
 
         Task::create([
-            'user_id' => $user_id = rand(3, 13),
+            'user_id' => $user_id = rand(1, 50),
             'team_id' => User::select('team_id')
                 ->where('id', '=', $user_id)
                 ->pluck('team_id')
@@ -76,7 +76,7 @@ class TaskSeeder extends Seeder
         ]);
 
         Task::create([
-            'user_id' => $user_id = rand(3, 13),
+            'user_id' => $user_id = rand(1, 50),
             'team_id' => User::select('team_id')
                 ->where('id', '=', $user_id)
                 ->pluck('team_id')
@@ -90,7 +90,7 @@ class TaskSeeder extends Seeder
         ]);
 
         Task::create([
-            'user_id' => $user_id = rand(3, 13),
+            'user_id' => $user_id = rand(1, 50),
             'team_id' => User::select('team_id')
                 ->where('id', '=', $user_id)
                 ->pluck('team_id')

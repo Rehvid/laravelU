@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
 
         $worker = User::create([
             'name' => 'Worker Test',
-            'team_id' => '3',
+            'team_id' => '0',
             'email' => 'worker.test@localhost',
             'email_verified_at' => Carbon::now(),
             'password' => Hash::make('12345678'),
