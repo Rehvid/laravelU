@@ -37,6 +37,10 @@ Route::middleware([
         Route::get('', [UserController::class, 'index'])
             ->name('index')
             ->middleware(['permission:users.index']);
+
+        Route::get('/team/{user}', [UserController::class, 'assignTeam'])
+            ->name('change.status');
+
     });
 
 
@@ -48,8 +52,13 @@ Route::middleware([
         'only' => ['index', 'create', 'edit']
     ]);
 
+    Route::get('task/status/{task}', [TaskController::class, 'editStatus'])->name('task.status');
+
     Route::resource('team', TeamController::class, [
         'only' => ['index', 'create', 'edit']
     ]);
 
 });
+
+
+
