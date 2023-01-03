@@ -7,9 +7,10 @@ namespace App\Http\Livewire\Tasks;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Status;
-use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use WireUi\Traits\Actions;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TaskForm extends Component
@@ -84,7 +85,7 @@ class TaskForm extends Component
     public function save(): void
     {
         if ($this->editMode) {
-            $this->authorize('update', $this->task);
+            $this->authorize('changeStatus', $this->task);
         } else {
             $this->authorize('create', Task::class);
         }
@@ -109,7 +110,14 @@ class TaskForm extends Component
 
     private function getUsers(): array
     {
-        $users = User::select('id', 'name')->get();
+        $users = [];
+
+        if (Auth::user()->isManager()) {
+            $users = User::select('id', 'name')->where('team_id', '=', Auth::user()->team_id)->get();
+        } elseif (Auth::user()->isAdmin()) {
+            $users = User::select('id', 'name')->get();
+        }
+
 
         $usersOptions = [];
 

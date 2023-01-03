@@ -79,4 +79,9 @@ class TaskPolicy
         return $task->status_id !== $statusDone
             && $user->can('tasks.done');
     }
+
+    public function changeStatus(User $user)
+    {
+        return $user->can('tasks.change_status');
+    }
 }

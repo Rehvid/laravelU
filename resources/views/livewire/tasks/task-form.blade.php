@@ -9,34 +9,36 @@
         </h3>
         <hr class="my-2">
 
-        <div class="grid grid-cols-2 gap-2 py-3">
-            <div>
-                <label for="title">Tytuł</label>
+        @can('tasks.store')
+            <div class="grid grid-cols-2 gap-2 py-3">
+                <div>
+                    <label for="title">Tytuł</label>
+                </div>
+                <div>
+                    <x-input wire:model="task.title" />
+                </div>
             </div>
-            <div>
-                <x-input wire:model="task.title" />
-            </div>
-        </div>
 
-        <div class="grid grid-cols-2 gap-2 py-3">
-            <div>
-                <label for="description">Description</label>
+            <div class="grid grid-cols-2 gap-2 py-3">
+                <div>
+                    <label for="description">Description</label>
+                </div>
+                <div>
+                    <x-textarea wire:model="task.description" />
+                </div>
             </div>
-            <div>
-                <x-textarea wire:model="task.description" />
-            </div>
-        </div>
 
-        <div class="grid grid-cols-2 gap-2 py-3">
-            <div>
-                <label for="user">Użytkownik</label>
+            <div class="grid grid-cols-2 gap-2 py-3">
+                <div>
+                    <label for="user">Użytkownik</label>
+                </div>
+                <div>
+                    <x-select :options="$users" option-key-value="true" wire:model="task.user_id" />
+                </div>
             </div>
-            <div>
-                <x-select :options="$users" option-key-value="true" wire:model="task.user_id" />
-            </div>
-        </div>
+        @endcan
 
-
+        @can('tasks.change_status')
         <div class="grid grid-cols-2 gap-2 py-3">
             <div>
                 <label for="user">Status</label>
@@ -45,18 +47,21 @@
                 <x-select :options="$statuses" option-key-value="true" wire:model="task.status_id" />
             </div>
         </div>
+        @endcan
+        
+        @can('tasks.store')
 
-        <div class="grid grid-cols-2 gap-2 py-3">
-            <div>
-                <label for="user">Deadline</label>
+            <div class="grid grid-cols-2 gap-2 py-3">
+                <div>
+                    <label for="user">Deadline</label>
+                </div>
+                <x-datetime-picker
+                    placeholder="Deadline"
+                    parse-format="YYYY-MM-DD HH:mm"
+                    wire:model="task.deadline"
+                />
             </div>
-            <x-datetime-picker
-                placeholder="Deadline"
-                parse-format="YYYY-MM-DD HH:mm"
-                wire:model="task.deadline"
-            />
-        </div>
-
+        @endcan
 
 
         <hr class="my-2" >

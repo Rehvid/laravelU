@@ -31,4 +31,11 @@ class TaskController extends Controller
 
         return view('task.form', ['task' => $task]);
     }
+
+    public function editStatus(Task $task): View
+    {
+        $this->authorize('changeStatus', $task);
+
+        return view('task.form', ['task' => $task]);
+    }
 }
