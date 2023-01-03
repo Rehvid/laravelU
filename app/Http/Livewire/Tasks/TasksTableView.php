@@ -10,10 +10,12 @@ use App\Models\Status;
 use WireUi\Traits\Actions;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\Tasks\Actions\DoneTaskAction;
 use App\Http\Livewire\Tasks\Actions\EditTaskAction;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use App\Http\Livewire\Tasks\Filters\TasksTeamFilter;
+use App\Http\Livewire\Tasks\Actions\StatusTaskAction;
 use App\Http\Livewire\Tasks\Actions\RestoreTaskAction;
 use App\Http\Livewire\Tasks\Filters\TasksStatusFilter;
 use App\Http\Livewire\Tasks\Actions\SoftDeleteTaskAction;
@@ -67,7 +69,15 @@ class TasksTableView extends TableView
 
     public function repository(): Builder
     {
-        return Task::query()->with('user', 'team', 'status')->withTrashed();
+        if (Auth::user()->isAdmin()) {
+            return Task::query()->with('user', 'team', 'status')->withTrashed();
+        }
+
+        if (Auth::user()->isManager()) {
+            return Task::query()->with('user', 'team', 'status')->withTrashed()->where('team_id' , '=' , Auth::user()->team_id);
+        }
+
+        return Task::query()->with('user', 'team', 'status')->withTrashed()->where('user_id' , '=' , Auth::user()->id);
     }
 
     /**
@@ -139,6 +149,7 @@ class TasksTableView extends TableView
     {
         return [
             new DoneTaskAction(),
+            new StatusTaskAction('task.status', 'Zmień status', 'list'),
             new EditTaskAction('task.edit', 'Edytuj'),
             new RestoreTaskAction(),
             new SoftDeleteTaskAction(),
