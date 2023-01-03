@@ -67,6 +67,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasRole(config('auth.roles.admin'));
     }
 
+    public function isManager(): bool
+    {
+        return $this->hasRole(config('auth.roles.manager'));
+    }
+
     public function team()
     {
         return $this->belongsTo(Team::class);
