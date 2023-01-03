@@ -7,6 +7,7 @@ namespace App\Http\Livewire\Users;
 use App\Http\Livewire\Current;
 use App\Http\Livewire\Users\Actions\AssignAdminRoleAction;
 use App\Http\Livewire\Users\Actions\AssignManagerRoleAction;
+use App\Http\Livewire\Users\Actions\AssignUserToTeamAction;
 use App\Http\Livewire\Users\Actions\RemoveAdminRoleAction;
 use App\Http\Livewire\Users\Actions\RemoveManagerRoleAction;
 use App\Http\Livewire\Users\Filters\EmailVerifiedFilter;
@@ -61,7 +62,7 @@ class UsersTableView extends TableView
     {
         return [
             $model->name,
-            $model->team->name,
+            $model->team->name ?? 'Brak zespołu',
             $model->email,
             $model->roles->implode('name', ','),
             $model->created_at,
@@ -81,6 +82,7 @@ class UsersTableView extends TableView
     {
         return [
             new AssignAdminRoleAction,
+            new AssignUserToTeamAction('users.change.status', 'Przypisz zespoł', 'layers'),
             new AssignManagerRoleAction,
             new RemoveAdminRoleAction,
             new RemoveManagerRoleAction,
