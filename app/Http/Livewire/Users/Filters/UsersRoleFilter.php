@@ -16,7 +16,7 @@ class UsersRoleFilter extends Filter
     {
         parent::__construct();
 
-        $this->title = 'roles';
+        $this->title = 'Role';
     }
 
     public function apply(Builder $query, $value, $request): Builder

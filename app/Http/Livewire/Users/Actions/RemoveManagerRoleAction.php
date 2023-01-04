@@ -14,7 +14,7 @@ class RemoveManagerRoleAction extends Action
     public $icon = 'droplet';
     public function __construct()
     {
-        $this->title = 'Remove Manager Role';
+        $this->title = 'Odbierz role managera';
         parent::__construct();
     }
 

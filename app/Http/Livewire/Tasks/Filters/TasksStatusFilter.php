@@ -17,7 +17,7 @@ class TasksStatusFilter extends Filter
     {
         parent::__construct();
 
-        $this->title = 'statuses';
+        $this->title = 'Statusy';
     }
 
     public function apply(Builder $query, $value, $request): Builder

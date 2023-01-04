@@ -14,7 +14,7 @@ class AssignAdminRoleAction extends Action
     public $icon = 'shield';
     public function __construct()
     {
-        $this->title = 'Assign admin role';
+        $this->title = 'Przypisz role admina';
         parent::__construct();
     }
 

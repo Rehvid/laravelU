@@ -17,7 +17,7 @@ class TasksTeamFilter extends Filter
     {
         parent::__construct();
 
-        $this->title = 'teams';
+        $this->title = 'Zespoły';
     }
 
     public function apply(Builder $query, $value, $request): Builder

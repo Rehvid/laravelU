@@ -14,7 +14,7 @@ class RemoveAdminRoleAction extends Action
     public $icon = 'shield';
     public function __construct()
     {
-        $this->title = 'Remove admin role';
+        $this->title = 'Odbierz role admina';
         parent::__construct();
     }
 

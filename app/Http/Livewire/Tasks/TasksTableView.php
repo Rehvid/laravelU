@@ -55,15 +55,15 @@ class TasksTableView extends TableView
     {
 
         return [
-            Header::title('user'),
-            Header::title('team'),
-            Header::title('status'),
-            Header::title('title')->sortBy('title'),
-            Header::title('description')->sortBy('description'),
-            Header::title('deadline')->sortBy('deadline'),
-            Header::title('created_at')->sortBy('created_at'),
-            Header::title('updated_at')->sortBy('updated_at'),
-            Header::title('deleted_at')->sortBy('deleted_at'),
+            Header::title(__('table.headers.user')),
+            Header::title(__('table.headers.team')),
+            Header::title(__('table.headers.status')),
+            Header::title(__('table.headers.title'))->sortBy('title'),
+            Header::title(__('table.headers.description'))->sortBy('description'),
+            Header::title(__('table.headers.deadline'))->sortBy('deadline'),
+            Header::title(__('table.headers.created_at'))->sortBy('created_at'),
+            Header::title(__('table.headers.updated_at'))->sortBy('updated_at'),
+            Header::title(__('table.headers.deleted_at'))->sortBy('deleted_at'),
         ];
     }
 

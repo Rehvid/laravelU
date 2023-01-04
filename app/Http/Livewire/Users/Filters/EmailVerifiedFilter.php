@@ -15,7 +15,7 @@ class EmailVerifiedFilter extends Filter
     public function __construct()
     {
         parent::__construct();
-        $this->title = 'email_verified_at';
+        $this->title = 'Zweryfikowane emaile';
     }
 
     public function apply(Builder $query, $value, $request): Builder

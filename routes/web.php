@@ -60,5 +60,5 @@ Route::middleware([
 
 });
 
-
+//TODO: Poprawić tłumaczenia/nazwy/dodać walidację
 

@@ -14,7 +14,7 @@ class AssignManagerRoleAction extends Action
     public $icon = 'droplet';
     public function __construct()
     {
-        $this->title = 'Assign Manager Role';
+        $this->title = 'Przypisz rolę managera';
         parent::__construct();
     }
 

@@ -16,7 +16,7 @@ class RestoreTeamAction extends Action
     {
         parent::__construct();
 
-        $this->title = 'Przywróć Team';
+        $this->title = 'Przywróć zespół';
     }
 
     public function handle($model, View $view): void

@@ -42,10 +42,10 @@ class TeamsTableView extends TableView
     public function headers(): array
     {
         return [
-            Header::title('name')->sortBy('name'),
-            Header::title('created_at')->sortBy('created_at'),
-            Header::title('updated_at')->sortBy('updated_at'),
-            Header::title('deleted_at')->sortBy('deleted_at'),
+            Header::title(__('table.headers.name'))->sortBy('name'),
+            Header::title(__('table.headers.created_at'))->sortBy('created_at'),
+            Header::title(__('table.headers.updated_at'))->sortBy('updated_at'),
+            Header::title(__('table.headers.deleted_at'))->sortBy('deleted_at'),
         ];
     }
 

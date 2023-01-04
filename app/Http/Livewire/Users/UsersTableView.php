@@ -45,11 +45,11 @@ class UsersTableView extends TableView
     public function headers(): array
     {
         return [
-            Header::title('name')->sortBy('name'),
-            Header::title('team_name'),
-            Header::title('email')->sortBy('email'),
-            Header::title('roles'),
-            Header::title('created_at')->sortBy('created_at'),
+            Header::title(__('table.headers.name'))->sortBy('name'),
+            Header::title(__('table.headers.team_name')),
+            Header::title(__('table.headers.email'))->sortBy('email'),
+            Header::title(__('table.headers.roles')),
+            Header::title(__('table.headers.created_at'))->sortBy('created_at'),
         ];
     }
 

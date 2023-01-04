@@ -35,7 +35,7 @@ class StatusForm extends Component
     public function validationAttributes(): array
     {
         return [
-            'name' => 'Nazwa'
+            'name' => __('table.headers.name')
         ];
     }
 
@@ -78,7 +78,7 @@ class StatusForm extends Component
                 ? "Udało się zaktualizować  status"
                 : "Udało się stworzyć nowy status"
         );
-        
+
         $this->editMode = true;
     }
 
