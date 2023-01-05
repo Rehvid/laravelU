@@ -2,14 +2,15 @@
     <form wire:submit.prevent="save">
         <h3 class="text-xl font-semibold leading-tight text-gray-800">
             @if ($editMode)
-
+                Edytuj status
             @else
+                Utwórz status
             @endif
         </h3>
         <hr class="my-2">
         <div class="grid grid-cols-2 gap-2">
             <div>
-                <label for="name">Nazwa</label>
+                <label for="name">{{ __('table.headers.name') }}</label>
             </div>
             <div>
                 <x-input wire:model="status.name" />

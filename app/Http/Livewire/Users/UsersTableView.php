@@ -62,7 +62,7 @@ class UsersTableView extends TableView
     {
         return [
             $model->name,
-            $model->team->name ?? 'Brak zespołu',
+            $model->team->name ?? __('table.row.notFoundTeam'),
             $model->email,
             $model->roles->implode('name', ','),
             $model->created_at,

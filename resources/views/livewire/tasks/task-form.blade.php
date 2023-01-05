@@ -12,7 +12,7 @@
         @can('tasks.store')
             <div class="grid grid-cols-2 gap-2 py-3">
                 <div>
-                    <label for="title">Tytuł</label>
+                    <label for="title"> {{ __('table.headers.title') }} </label>
                 </div>
                 <div>
                     <x-input wire:model="task.title" />
@@ -21,7 +21,7 @@
 
             <div class="grid grid-cols-2 gap-2 py-3">
                 <div>
-                    <label for="description">Description</label>
+                    <label for="description">{{ __('table.headers.description') }} </label>
                 </div>
                 <div>
                     <x-textarea wire:model="task.description" />
@@ -30,39 +30,36 @@
 
             <div class="grid grid-cols-2 gap-2 py-3">
                 <div>
-                    <label for="user">Użytkownik</label>
+                    <label for="user"> {{ __('table.headers.user') }} </label>
                 </div>
                 <div>
                     <x-select :options="$users" option-key-value="true" wire:model="task.user_id" />
                 </div>
             </div>
+
+            <div class="grid grid-cols-2 gap-2 py-3">
+                <div>
+                    <label for="user">{{ __('table.headers.deadline') }}</label>
+                </div>
+                <x-datetime-picker
+                    placeholder="{{ __('table.headers.deadline') }}"
+                    parse-format="YYYY-MM-DD HH:mm"
+                    wire:model="task.deadline"
+                />
+            </div>
+
         @endcan
 
         @can('tasks.change_status')
         <div class="grid grid-cols-2 gap-2 py-3">
             <div>
-                <label for="user">Status</label>
+                <label for="user">{{ __('table.headers.status') }}</label>
             </div>
             <div>
                 <x-select :options="$statuses" option-key-value="true" wire:model="task.status_id" />
             </div>
         </div>
         @endcan
-        
-        @can('tasks.store')
-
-            <div class="grid grid-cols-2 gap-2 py-3">
-                <div>
-                    <label for="user">Deadline</label>
-                </div>
-                <x-datetime-picker
-                    placeholder="Deadline"
-                    parse-format="YYYY-MM-DD HH:mm"
-                    wire:model="task.deadline"
-                />
-            </div>
-        @endcan
-
 
         <hr class="my-2" >
         <div class="flex justify-end pt-2">

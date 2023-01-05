@@ -11,9 +11,14 @@ return [
         'title' => 'Tytuł',
         'status' => 'Status',
         'team' => 'Zespół',
+        'teams' => 'Zespoły',
         'user' => 'Użytkownik',
         'team_name' => 'Nazwa zespołu',
         'email' => 'email',
         'roles' => 'role'
-    ]
+    ],
+    'row' => [
+        'notFoundTeam' => 'Brak przypisanego zespołu',
+        'notFoundStatus' => 'Brak przypisanego statusu'
+    ],
 ];

@@ -10,7 +10,7 @@
 
        <div class="grid grid-cols-2 gap-2 py-3">
             <div>
-                <label for="user">Zespoły</label>
+                <label for="user">{{ __('table.headers.teams') }}</label>
             </div>
             <div>
                 <x-select :options="$teams" option-key-value="true" wire:model="user.team_id" />

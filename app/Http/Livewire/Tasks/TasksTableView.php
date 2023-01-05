@@ -89,8 +89,8 @@ class TasksTableView extends TableView
     {
         return [
             $model->user->name,
-            $model->team->name ?? '',
-            $model->status->name ?? '',
+            $model->team->name ?? __('table.row.notFoundTeam') ,
+            $model->status->name ?? __('table.row.notFoundStatus'),
             $model->title,
             $model->description,
             $model->deadline,
