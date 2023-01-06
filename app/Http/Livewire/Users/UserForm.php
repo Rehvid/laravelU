@@ -49,7 +49,7 @@ class UserForm extends Component
     public function render(): View
     {
         return view('livewire.users.user-form', [
-            'teams' => $this->getOptions()
+            'teams' => $this->getTeams()
         ]);
     }
 
@@ -77,7 +77,7 @@ class UserForm extends Component
         $this->editMode = true;
     }
 
-    private function getOptions(): array
+    private function getTeams (): array
     {
 
         if (Auth::user()->isAdmin()) {

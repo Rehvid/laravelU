@@ -72,7 +72,8 @@ class TaskForm extends Component
     {
         return view('livewire.tasks.task-form', [
             'users' => $this->getUsers(),
-            'statuses' => $this->getOptions()
+            'statuses' => $this->getStatuses
+()
         ]);
     }
 
@@ -130,7 +131,7 @@ class TaskForm extends Component
         return $usersOptions;
     }
 
-    private function getOptions(): array
+    private function getStatuses(): array
     {
         $statuses = Status::select('id', 'name')->get();
 
