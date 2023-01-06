@@ -35,17 +35,19 @@ class TaskForm extends Component
             'task.description' => [
                 'required',
                 'string',
-                'min:2',
+                'min:3',
             ],
             'task.user_id' => [
-                'required'
+                'required',
+                'numeric'
             ],
             'task.status_id' => [
-                'required'
+                'required',
+                'numeric',
             ],
             'task.deadline' => [
                 'required'
-            ]
+            ],
         ];
     }
 

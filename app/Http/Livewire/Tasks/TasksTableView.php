@@ -93,7 +93,7 @@ class TasksTableView extends TableView
             $model->status->name ?? __('table.row.notFoundStatus'),
             $model->title,
             $model->description,
-            $model->deadline,
+            $model->getRawOriginal('deadline'),
             $model->created_at,
             $model->updated_at,
             $model->deleted_at
