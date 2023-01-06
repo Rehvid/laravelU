@@ -28,6 +28,7 @@ class UserForm extends Component
         return [
             'user.team_id' => [
                 'required',
+                'numeric',
             ],
         ];
     }
